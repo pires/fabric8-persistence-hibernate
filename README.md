@@ -1,7 +1,7 @@
-cxf-dosgi-demo
+fabric8-persistence-demo
 ======================
 
-Fabric8 + E-OSGI managed persistence (Aries + Hibernate) + REST service demonstration code.
+Fabric8 + E-OSGi managed persistence (Aries + Hibernate) + REST service demonstration code.
 
 # Pre-requisites
 
@@ -10,7 +10,7 @@ Fabric8 + E-OSGI managed persistence (Aries + Hibernate) + REST service demonstr
 
 # Build and install
 
-```no-highlight
+```
 mvn clean install
 ```
 
@@ -30,7 +30,7 @@ bin/fusefabric
 
 If everything goes well, you should get a Fabric shell that looks like this:
 
-```no-highlight
+```
 Please wait while Fabric8 is loading...
 100% [========================================================================]
 
@@ -40,7 +40,7 @@ ______    _          _      _____
 |  _/ _` | '_ \| '__| |/ __|/ _ \
 | || (_| | |_) | |  | | (__| |_| |
 \_| \__,_|_.__/|_|  |_|\___\_____/
-  Fabric8 Container (1.0.0-SNAPSHOT)
+  Fabric8 Container (1.0.0.redhat-340)
   http://fabric8.io/
 
 Type 'help' to get started
@@ -56,12 +56,12 @@ Fabric8:karaf@root>
 ```
 
 ## Start Fabric Ensemble
-```no-highlight
+```
 fabric:create --clean --wait-for-provisioning
 ```
 
 ## Define our own profile
-```no-highlight
+```
 profile-create --parents example-quickstarts-rest persistence-example
 profile-edit --repositories mvn:com.github.pires.example/feature-persistence/0.1-SNAPSHOT/xml/features persistence-example
 profile-edit --features persistence-aries-hibernate persistence-example
@@ -71,12 +71,13 @@ profile-edit --bundles mvn:com.github.pires.example/dal-impl/0.1-SNAPSHOT persis
 profile-edit --bundles mvn:com.github.pires.example/rest/0.1-SNAPSHOT persistence-example
 ```
 
-## Deploy new container with newly created profile
+## Create and run new container with newly created profile
 
-```no-highlight
+```
 container-create-child --profile persistence-example root test
+container-start test
 ```
 
 # Troubleshooting
 
-If ```rest```bundle is waiting on ```UserService````, it's because ```dal-impl`` is waiting on *hibernate-osgi* to announce its availability. Restart *hibernate-osgi* bundle, et voilá!
+If ```rest``` bundle is waiting on ```UserService```, it's because ```dal-impl``` bundle is waiting on **hibernate-osgi** to announce its availability. Restart **hibernate-osgi** bundle, *et voilá*!
