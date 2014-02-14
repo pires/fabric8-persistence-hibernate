@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint
+  xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <bean
+    id="data_source_hsql"
+    class="org.hsqldb.jdbc.JDBCDataSource">
+    <property
+      name="url"
+      value="jdbc:hsqldb:mem:fabric8.hibernate.db" />
+    <property
+      name="user"
+      value="sa" />
+    <property
+      name="password"
+      value="" />
+  </bean>
+
+  <service
+    ref="data_source_hsql"
+    interface="javax.sql.DataSource">
+    <service-properties>
+      <entry
+        key="osgi.jndi.service.name"
+        value="jdbc/hsqlds" />
+    </service-properties>
+  </service>
+
+</blueprint>

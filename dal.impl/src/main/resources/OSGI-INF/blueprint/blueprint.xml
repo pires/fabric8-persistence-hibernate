@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint
+  xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
+  xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0">
+
+  <!-- This gets the container-managed EntityManager and injects it into the DAO beans. -->
+  <bean
+    id="userEntityDao"
+    class="com.github.pires.example.dal.impl.daos.UserEntityDao"
+    activation="eager">
+    <jpa:context
+      unitname="PU"
+      property="entityManager" />
+    <tx:transaction
+      method="*"
+      value="Required" />
+  </bean>
+
+  <bean
+    id="userService"
+    class="com.github.pires.example.dal.impl.UserServiceImpl">
+    <property
+      name="userDao"
+      ref="userEntityDao" />
+  </bean>
+
+  <service
+    ref="userService"
+    interface="com.github.pires.example.dal.UserService">
+    <service-properties>
+      <entry
+        key="service.exported.interfaces"
+        value="*" />
+    </service-properties>
+  </service>
+
+</blueprint>

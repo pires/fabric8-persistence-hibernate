@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.pires.example</groupId>
+  <artifactId>fabric8-hibernate</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Fabric8 Hibernate Persistence example</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+    <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+    <java.version>1.7</java.version>
+    <jackson.version>1.9.13</jackson.version>
+    <slf4j.version>1.7.5</slf4j.version>
+    <log4j.version>1.2.17</log4j.version>
+    <junit.version>[4.11,)</junit.version>
+
+    <!-- OSGi stuff -->
+    <felix-plugin.version>2.4.0</felix-plugin.version>
+    <osgi.version>5.0.0</osgi.version>
+  </properties>
+
+  <modules>
+    <module>feature-persistence</module>
+    <module>dal</module>
+    <module>dal.impl</module>
+    <module>datasource-hsqldb</module>
+    <module>rest</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- OSGi -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <version>${osgi.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.compendium</artifactId>
+        <version>${osgi.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.enterprise</artifactId>
+        <version>${osgi.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Java EE specs -->
+      <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>2.0</version>
+      </dependency>
+
+      <!-- Module dependencies -->
+      <dependency>
+        <groupId>com.github.pires.example</groupId>
+        <artifactId>dal</artifactId>
+        <version>${project.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Others -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.5</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
+        <version>2.2.3</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <optimize>true</optimize>
+          <debug>true</debug>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${felix-plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Implementation-Version>${project.version}</Implementation-Version>
+            <Import-Package>${osgi.import.pkg}</Import-Package>
+            <Export-Package>${osgi.export.pkg}</Export-Package>
+            <Private-Package>${osgi.private.pkg}</Private-Package>
+            <DynamicImport-Package>${osgi.dynamic.pkg}</DynamicImport-Package>
+            <_failok>true</_failok>
+            <Require-Bundle>${osgi.require.bundle}</Require-Bundle>
+            <Export-Service>${osgi.services.export}</Export-Service>
+            <Embed-Dependency>${osgi.embed.dependency}</Embed-Dependency>
+            <Embed-Transitive>${osgi.embed.transitive}</Embed-Transitive>
+            <Require-Bundle>${osgi.require.bundle}</Require-Bundle>
+            <Require-Capability>${osgi.capabilities.require}</Require-Capability>
+            <Provide-Capability>${osgi.capabilities.provide}</Provide-Capability>
+            <Service-Component>${osgi.service.component}</Service-Component>
+            <_removeheaders>Import-Service</_removeheaders>
+            <Meta-Persistence>${osgi.meta.persistence}</Meta-Persistence>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

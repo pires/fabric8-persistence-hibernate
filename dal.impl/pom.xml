@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.github.pires.example</groupId>
+    <artifactId>fabric8-hibernate</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>dal-impl</artifactId>
+  <name>Data Access Layer Implementation</name>
+  <url>http://maven.apache.org</url>
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.enterprise</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.pires.example</groupId>
+      <artifactId>dal</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jpa_2.0_spec</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <osgi.import.pkg>
+      org.hibernate.proxy,
+      javassist.util.proxy,
+      com.github.pires.example.dal,
+      *
+    </osgi.import.pkg>
+    <osgi.export.pkg></osgi.export.pkg>
+    <osgi.private.pkg>com.github.pires.example.dal.impl.*</osgi.private.pkg>
+    <osgi.meta.persistence>META-INF/persistence.xml</osgi.meta.persistence>
+  </properties>
+
+</project>
