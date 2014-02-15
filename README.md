@@ -78,6 +78,32 @@ container-create-child --profile persistence-example root test
 container-start test
 ```
 
+# Testing
+
+In Hawt.io UI, go to ```API``` tab (in the parent container), check the host and port where ```UserService``` is available and point it down. Test the REST endpoint as you wish!
+
+## REST API (JSON)
+
+Create new user
+```
+PUT /user
+
+Example JSON:
+{
+  "name":"Pires"
+}
+```
+
+Count users
+```
+GET /user/count
+```
+
+List users
+```
+GET /user
+```
+
 # Troubleshooting
 
 If ```rest``` bundle is waiting on ```UserService```, it's because ```dal-impl``` bundle is waiting on **hibernate-osgi** to announce its availability. Restart **hibernate-osgi** bundle, *et voilá*!
