@@ -96,6 +96,31 @@
     </resources>
     <plugins>
       <plugin>
+        <inherited>false</inherited>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.9.0</version>
+        <configuration>
+          <aggregate>true</aggregate>
+          <header>${basedir}/COPYRIGHT</header>
+          <strictCheck>true</strictCheck>
+          <includes>
+            <include>**/src/main/java/**/*.java</include>
+            <include>**/src/test/java/**/*.java</include>
+          </includes>
+          <useDefaultExcludes>true</useDefaultExcludes>
+          <encoding>UTF-8</encoding>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
