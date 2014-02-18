@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     }
   }
 
-  @Override
   public List<User> findAll() {
     log.info("Retrieving all persisted users..");
     final int totalUsers = userDao.count();
@@ -52,7 +51,6 @@ public class UserServiceImpl implements UserService {
     return Collections.emptyList();
   }
 
-  @Override
   public int count() {
     log.info("Counting all persisted users..");
     return userDao.count();
