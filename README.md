@@ -19,7 +19,7 @@ mvn clean install
 ## Installation and initial configuration
 
 * Download [latest build](https://repository.jboss.org/nexus/content/repositories/ea/io/fabric8/fabric8-karaf/) for ```fabric-karaf``` and extract it.
-*(tested on fabric8-karaf-1.0.0.redhat-340)*
+*(tested on fabric8-karaf-1.0.0.redhat-348)*
 * Extract it
 * ```cd``` to the newly extracted folder
 * Define default administrative user (login: **admin**, password:**admin**) by uncommenting the last line of ```etc/user.properties```
@@ -75,7 +75,6 @@ profile-edit --bundles mvn:com.github.pires.example/rest/0.1-SNAPSHOT persistenc
 
 ```
 container-create-child --profile persistence-example root test
-container-start test
 ```
 
 # Testing
