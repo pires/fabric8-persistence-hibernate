@@ -40,6 +40,10 @@
     <bundle>mvn:org.hibernate/hibernate-core/4.2.7.Final</bundle>
     <bundle>mvn:org.hibernate/hibernate-entitymanager/4.2.7.Final</bundle>
     <bundle>mvn:org.hibernate/hibernate-osgi/4.2.7.Final</bundle>
+    <bundle>mvn:com.github.pires.example/datasource-hsqldb/0.1-SNAPSHOT</bundle>
+    <bundle>mvn:com.github.pires.example/dal/0.1-SNAPSHOT</bundle>
+    <bundle>mvn:com.github.pires.example/dal-impl/0.1-SNAPSHOT</bundle>
+    <bundle>mvn:com.github.pires.example/rest/0.1-SNAPSHOT</bundle>
   </feature>
 
 </features>
