@@ -21,7 +21,7 @@
       javax.sql,
       *
     </osgi.import.pkg>
-    <osgi.export.pkg>*</osgi.export.pkg>
+    <osgi.export.pkg>com.github.pires.example.datasource,*</osgi.export.pkg>
   </properties>
 
 </project>

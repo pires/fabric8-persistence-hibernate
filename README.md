@@ -65,10 +65,6 @@ fabric:create --clean --wait-for-provisioning
 profile-create --parents example-quickstarts-rest persistence-example
 profile-edit --repositories mvn:com.github.pires.example/feature-persistence/0.1-SNAPSHOT/xml/features persistence-example
 profile-edit --features persistence-aries-hibernate persistence-example
-profile-edit --bundles mvn:com.github.pires.example/datasource-hsqldb/0.1-SNAPSHOT persistence-example
-profile-edit --bundles mvn:com.github.pires.example/dal/0.1-SNAPSHOT persistence-example
-profile-edit --bundles mvn:com.github.pires.example/dal-impl/0.1-SNAPSHOT persistence-example
-profile-edit --bundles mvn:com.github.pires.example/rest/0.1-SNAPSHOT persistence-example
 ```
 
 ## Create and run new container with newly created profile
@@ -103,6 +99,6 @@ List users
 GET /user
 ```
 
-# Troubleshooting
+# Developing
 
-If ```rest``` bundle is waiting on ```UserService```, it's because ```dal-impl``` bundle is waiting on **hibernate-osgi** to announce its availability. Restart **hibernate-osgi** bundle, *et voilá*!
+If you are changing these bundles remember you can use the ``fabric:watch *`` command.  Fabric will automatically update bundles that change after a ``mvn install``
