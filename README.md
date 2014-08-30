@@ -62,7 +62,7 @@ fabric:create --clean --wait-for-provisioning
 
 ## Define our own profile
 ```
-profile-create --parents example-quickstarts-rest persistence-example
+profile-create --parents quickstarts-karaf-cxf-rest persistence-example
 profile-edit --repositories mvn:com.github.pires.example/feature-persistence/0.1-SNAPSHOT/xml/features persistence-example
 profile-edit --features persistence-aries-hibernate persistence-example
 ```
@@ -97,6 +97,13 @@ GET /user/count
 List users
 ```
 GET /user
+```
+
+### example
+```
+curl -H "Accept: application/json" -H "Content-type: application/json" -X PUT -d '{"name":"Pires"}' http://localhost:8182/cxf/demo/user ; echo
+
+curl -H "Accept: application/json" -H "Content-type: application/json" -X GET  http://localhost:8182/cxf/demo/user/count ; echo
 ```
 
 # Developing
