@@ -18,9 +18,27 @@
     name="persistence-aries-hibernate"
     version="${version}">
 
+    
     <feature>transaction</feature>
     <feature>jpa</feature>
     <feature>jndi</feature>
+
+    <!-- Blueprint -->
+    <!-- these should be loaded automaticaly but it doesn't seem to work -->
+    <feature>aries-blueprint</feature>
+    <bundle>mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/1.0.1</bundle>
+    <bundle>mvn:org.apache.aries.jpa/org.apache.aries.jpa.blueprint.aries/1.0.0</bundle>
+ 
+    <!-- JTA -->
+<!--     
+    <config name="org.apache.aries.transaction">
+        aries.transaction.recoverable = true
+        aries.transaction.timeout = 600
+        aries.transaction.howl.maxLogFiles = 2
+        aries.transaction.howl.maxBlocksPerFile = 512
+        aries.transaction.howl.bufferSizeKBytes = 4
+    </config> 
+-->
 
     <!-- JDBC Driver -->
     <bundle>mvn:org.hsqldb/hsqldb/2.3.0</bundle>
@@ -40,6 +58,8 @@
     <bundle>mvn:org.hibernate/hibernate-core/4.2.7.Final</bundle>
     <bundle>mvn:org.hibernate/hibernate-entitymanager/4.2.7.Final</bundle>
     <bundle>mvn:org.hibernate/hibernate-osgi/4.2.7.Final</bundle>
+
+    
     <bundle>mvn:com.github.pires.example/datasource-hsqldb/0.1-SNAPSHOT</bundle>
     <bundle>mvn:com.github.pires.example/dal/0.1-SNAPSHOT</bundle>
     <bundle>mvn:com.github.pires.example/dal-impl/0.1-SNAPSHOT</bundle>
