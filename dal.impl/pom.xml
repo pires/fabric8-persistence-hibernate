@@ -37,15 +37,17 @@
       <artifactId>dal</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jpa_2.0_spec</artifactId>
-      <version>1.1</version>
+      <!-- exports package javax.persistence -->
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.0.Final</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
 
   <properties>
     <osgi.import.pkg>
+      javax.persistence,
       org.hibernate.proxy,
       javassist.util.proxy,
       com.github.pires.example.dal,
