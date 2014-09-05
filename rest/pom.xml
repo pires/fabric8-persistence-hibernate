@@ -11,8 +11,7 @@
   </parent>
 
   <artifactId>rest</artifactId>
-  <name>REST 2</name>
-  <url>http://maven.apache.org</url>
+  <name>REST</name>
   <packaging>bundle</packaging>
 
   <dependencies>

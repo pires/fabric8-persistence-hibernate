@@ -12,7 +12,6 @@
 
   <artifactId>datasource-hsqldb</artifactId>
   <name>Data Source HSQLDB</name>
-  <url>http://maven.apache.org</url>
   <packaging>bundle</packaging>
 
   <properties>

@@ -22,9 +22,9 @@
   <persistence-unit
     name="PU"
     transaction-type="JTA">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hsqlds)</jta-data-source>
-    <!-- <jta-data-source>osgi.jndi.service.name=jdbc/hsqlds</jta-data-source> -->
+<!--     <jta-data-source>osgi.jndi.service.name=jdbc/hsqlds</jta-data-source> -->
     <class>com.github.pires.example.dal.impl.entities.UserEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
