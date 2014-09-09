@@ -19,21 +19,16 @@
   xmlns="http://java.sun.com/xml/ns/persistence"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   version="2.0">
-  <persistence-unit
-    name="PU"
-    transaction-type="JTA">
+  <persistence-unit name="PU" transaction-type="JTA">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/hsqlds)</jta-data-source>
-<!--     <jta-data-source>osgi.jndi.service.name=jdbc/hsqlds</jta-data-source> -->
     <class>com.github.pires.example.dal.impl.entities.UserEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property
-        name="hibernate.hbm2ddl.auto"
-        value="create-drop" />
-      <property
-        name="hibernate.archive.autodetection"
-        value="class" />
+      <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+      <property name="hibernate.archive.autodetection" value="class" />
+      <property name="hibernate.id.new_generator_mappings" value="true" />
+      <property name="hibernate.cache.use_second_level_cache" value="false" />
     </properties>
   </persistence-unit>
 </persistence>
