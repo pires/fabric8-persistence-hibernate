@@ -1,7 +1,7 @@
 fabric8-persistence-demo
 ======================
 
-Fabric8 + E-OSGi managed persistence (Aries + Hibernate) + REST service demonstration code.
+Fabric8 + E-OSGi JPA 2.1 managed persistence (Aries + Hibernate 4.3.x) + REST service demonstration code.
 
 # Pre-requisites
 
@@ -19,13 +19,11 @@ mvn clean install
 ## Installation and initial configuration
 
 * Download [latest build](https://repository.jboss.org/nexus/content/repositories/ea/io/fabric8/fabric8-karaf/) for ```fabric-karaf``` and extract it.
-*(tested on fabric8-karaf-1.0.0.redhat-348)*
+*(tested on fabric8-karaf-1.2.0.Beta3)*
 * Extract it
-* ```cd``` to the newly extracted folder
-* Define default administrative user (login: **admin**, password:**admin**) by uncommenting the last line of ```etc/user.properties```
 * Start Fabric
 ```no-highlight
-bin/fusefabric
+bin/fabric8
 ```
 
 If everything goes well, you should get a Fabric shell that looks like this:
@@ -40,7 +38,7 @@ ______    _          _      _____
 |  _/ _` | '_ \| '__| |/ __|/ _ \
 | || (_| | |_) | |  | | (__| |_| |
 \_| \__,_|_.__/|_|  |_|\___\_____/
-  Fabric8 Container (1.0.0.redhat-340)
+  Fabric8 Container (1.2.0.Beta3)
   http://fabric8.io/
 
 Type 'help' to get started
@@ -48,16 +46,6 @@ and 'help [cmd]' for help on a specific command.
 Hit '<ctrl-d>' or 'osgi:shutdown' to shutdown this container.
 
 Open a browser to http://localhost:8181 to access the management console
-
-Create a new Fabric via 'fabric:create'
-or join an existing Fabric via 'fabric:join [someUrls]'
-
-Fabric8:karaf@root>
-```
-
-## Start Fabric Ensemble
-```
-fabric:create --clean --wait-for-provisioning
 ```
 
 ## Define our own profile
@@ -99,7 +87,7 @@ List users
 GET /user
 ```
 
-### example
+### curl commands
 ```
 curl -H "Accept: application/json" -H "Content-type: application/json" -X PUT -d '{"name":"Pires"}' http://localhost:8182/cxf/demo/user ; echo
 
